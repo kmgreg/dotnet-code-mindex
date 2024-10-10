@@ -24,6 +24,7 @@ namespace CodeChallenge.Controllers
         public IActionResult GetCompensationByEmployeeId(String employeeId)
         {
             _logger.LogDebug($"Received request for compensation for '{employeeId}'");
+            // I interpretted this as getting the most recent and "in date" effectiveDate (see CompensationRepository)
             var compensation = _compensationService.GetByEmployeeId(employeeId);
             if (compensation == null)
             {

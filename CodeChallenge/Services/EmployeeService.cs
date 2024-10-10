@@ -67,13 +67,14 @@ namespace CodeChallenge.Services
         {
             int total = 0;
             List<Employee> employees = emp.DirectReports;
+            // Loop instead of recursive to save memory
             while (employees.Count > 0)
             {
                 total += employees.Count;
                 List<Employee> nextLevel = new List<Employee>();
                 foreach (Employee report in employees)
                 {
-                    // compensate for EF Core not including a deep copy of the report structure
+                    // compensate for EF not including a deep copy of the report structure
                     var fullEmployee = _employeeRepository.GetById(report.EmployeeId);
                     if (fullEmployee.DirectReports != null)
                     {

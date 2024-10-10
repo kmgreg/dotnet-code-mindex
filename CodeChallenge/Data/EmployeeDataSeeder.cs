@@ -29,6 +29,7 @@ namespace CodeChallenge.Data
 
                 await _employeeContext.SaveChangesAsync();
 
+                // Load the test compensation
                 List<Compensation> compensations = LoadCompensations();
                 await _employeeContext.Compensations.AddRangeAsync(compensations);
                 await _employeeContext.SaveChangesAsync();
@@ -87,6 +88,7 @@ namespace CodeChallenge.Data
             }
         }
 
+        // Need to add correct employee references
         private void AddFullEmployees(List<Compensation> compensations)
         {
             compensations.ForEach(compensation =>
